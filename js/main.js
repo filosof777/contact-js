@@ -2,6 +2,9 @@
 let elContactInputName = document.querySelector("#contactInputName");
 let elContactInputRel = document.querySelector("#contactInputRel");
 let elContactInputPhone = document.querySelector("#contactInputPhone");
+let elContactOption = document.querySelectorAll('.contact-option');
+
+console.log(elContactOption.length);
 
 // Search
 let elSearch = document.querySelector('.contact-search');
@@ -15,7 +18,7 @@ let elContactAddBtn = document.querySelector("#contactAddBtn");
 
 // Vareable
 let allContacts = [];
-let itemContacts = {};
+// let itemContacts = {};
 
 let countId = 1;
 let contactName = '';
@@ -37,9 +40,15 @@ elContactInputPhone.addEventListener('keyup', () => {
 elContactAddBtn.addEventListener('click', (e) => {
   e.preventDefault();
   if (contactName !== '' && contactRel !== '' && contactPhone !== '') {
-    itemContacts = {
+    let fullName = contactName;
+    fullName = fullName.split(" ", 2);
+
+    let firstName = fullName[0];
+    let secondName = fullName[1];
+    let itemContacts = {
       id: countId,
-      name: contactName,
+      name: firstName,
+      surname: secondName,
       rel: contactRel,
       phone: contactPhone
     }
@@ -51,11 +60,7 @@ elContactAddBtn.addEventListener('click', (e) => {
     li.classList = ('contact-item');
   
     // Split fname sname
-    let fullName = contactName;
-    fullName = fullName.split(" ", 2);
-
-    let firstName = fullName[0];
-    let secondName = fullName[1];
+   
 
     // Name 
     let fname = document.createElement('p');
@@ -63,7 +68,7 @@ elContactAddBtn.addEventListener('click', (e) => {
     fname.textContent = 'First Name: ';
     let inFname = document.createElement('span');
     inFname.classList = ('contact-subtext');
-    inFname.textContent = firstName;
+    inFname.textContent = itemContacts.name;
     fname.appendChild(inFname);
     li.appendChild(fname);
 
@@ -73,7 +78,7 @@ elContactAddBtn.addEventListener('click', (e) => {
     sname.textContent = 'Last Name: ';
     let inSname = document.createElement('span');
     inSname.classList = ('contact-subtext');
-    inSname.textContent = secondName;
+    inSname.textContent = itemContacts.surname;
     sname.appendChild(inSname);
     li.appendChild(sname);
 
@@ -83,7 +88,7 @@ elContactAddBtn.addEventListener('click', (e) => {
     rel.textContent = 'Relationship: ';
     let inRel = document.createElement('span');
     inRel.classList = ('contact-subtext');
-    inRel.textContent = contactRel;
+    inRel.textContent = itemContacts.rel;
     rel.appendChild(inRel);
     li.appendChild(rel);
 
@@ -91,13 +96,13 @@ elContactAddBtn.addEventListener('click', (e) => {
     let tel = document.createElement('a');
     tel.classList = ('contact-tel');
     tel.setAttribute('href', `tel:${contactPhone}`)
-    tel.textContent = contactPhone;
+    tel.textContent = itemContacts.phone;
     li.appendChild(tel);
 
     elContactList.appendChild(li);
 
-    elSearchBtn.addEventListener('click', () => {
-      if (itemContacts['name'] == elSearch.value) {
+    elSearch.addEventListener('keyup', () => {
+      if (itemContacts.name.toLowerCase().includes(elSearch.value.toLowerCase()) || itemContacts.surname.toLowerCase().includes(elSearch.value.toLowerCase())) {
         li.className = ('d-block contact-item')
       }
       else {
@@ -109,6 +114,11 @@ elContactAddBtn.addEventListener('click', (e) => {
   elContactInputRel.value = '';
   elContactInputPhone.value = '';
 });
+
+
+
+
+
 
 
 
