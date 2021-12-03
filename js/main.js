@@ -70,7 +70,7 @@ elContactAddBtn.addEventListener('click', (e) => {
     // Second name
     let sname = document.createElement('p');
     sname.classList = ('contact-text');
-    sname.textContent = 'Second Name: ';
+    sname.textContent = 'Last Name: ';
     let inSname = document.createElement('span');
     inSname.classList = ('contact-subtext');
     inSname.textContent = secondName;
