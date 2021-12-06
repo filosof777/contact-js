@@ -108,6 +108,35 @@
   }
 }
 
+
+// sort btn
+
+.sort-content {
+  flex-flow: row wrap;
+}
+
+.sort-btn {
+  border: none;
+  background-color: #16ffbd;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 20px;
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: background-color 0.4s ease;
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #00aeff;
+  }
+}
+
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
